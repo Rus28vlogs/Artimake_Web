@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Artimake_Web.Models.Customer>
+
+@{
+    ViewData["Title"] = "Customers List";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-action="Create">Create New Customer</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Contact Info</th>
+            <th>Preferences</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <td>@customer.CustomerId</td>
+                <td>@customer.Name</td>
+                <td>@customer.ContactInfo</td>
+                <td>@customer.Preferences</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@customer.CustomerId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@customer.CustomerId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@customer.CustomerId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,39 @@
+@model IEnumerable<Artimake_Web.Models.Review>
+
+@{
+    ViewData["Title"] = "Reviews List";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Customer</th>
+            <th>Product</th>
+            <th>Rating</th>
+            <th>Review</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var review in Model)
+    {
+        <tr>
+            <td>@review.ReviewId</td>
+            <td>@review.Customer.Name</td> <!-- Предполагается, что у Customer есть свойство Name -->
+            <td>@review.Product.Name</td> <!-- Предполагается, что у Product есть свойство Name -->
+            <td>@review.Rating</td>
+            <td>@review.ReviewText</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@review.ReviewId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@review.ReviewId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@review.ReviewId">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<a asp-action="Create">Create New Review</a>

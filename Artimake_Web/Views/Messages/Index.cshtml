@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Artimake_Web.Models.Message>
+
+@{
+    ViewData["Title"] = "Messages";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Message ID</th>
+            <th>Customer ID</th>
+            <th>Craftsman ID</th>
+            <th>Message Text</th>
+            <th>Message Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var message in Model)
+        {
+            <tr>
+                <td>@message.MessageId</td>
+                <td>@message.CustomerId</td>
+                <td>@message.CraftsmanId</td>
+                <td>@message.MessageText</td>
+                <td>@message.MessageDate.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@message.MessageId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@message.MessageId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@message.MessageId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create">Create New Message</a>

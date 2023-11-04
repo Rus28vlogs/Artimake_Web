@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Artimake_Web.Models.DeliveryAddress>
+
+@{
+    ViewData["Title"] = "Delivery Addresses";
+}
+
+<h1>@ViewData["Title"]]</h1>
+
+<p>
+    <a asp-action="Create">Add New Address</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.First().AddressId)</th>
+            <th>@Html.DisplayNameFor(model => model.First().CustomerId)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Address)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.AddressId)</td>
+                <td>@Html.DisplayFor(modelItem => item.CustomerId)</td>
+                <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.AddressId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.AddressId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.AddressId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

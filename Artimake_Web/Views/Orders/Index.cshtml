@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Artimake_Web.Models.Order>
+
+@{
+    ViewData["Title"] = "Orders List";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Customer</th>
+                <th>Product</th>
+                <th>Order Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.OrderId</td>
+                    <td>@order.Customer?.Name</td>
+                    <td>@order.Product?.Name</td>
+                    <td>@order.OrderDate.ToString("d")</td>
+                    <td>@order.Status</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@order.OrderId">Details</a> |
+                        <a asp-action="Edit" asp-route-id="@order.OrderId">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@order.OrderId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No orders found.</p>
+}
+<a asp-action="Create">Create New Order</a>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Artimake_Web.Models.ProductPhoto>
+
+@{
+    ViewData["Title"] = "Product Photos";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create">Add New Photo</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Product Name</th>
+            <th>Photo</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var photo in Model)
+    {
+        <tr>
+            <td>@photo.PhotoId</td>
+            <td>@photo.Product.Name</td>
+            <td>
+                <img src="@Url.Content(photo.FilePath)" alt="Product Photo" style="width: 100px; height: auto;" />
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@photo.PhotoId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@photo.PhotoId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@photo.PhotoId">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
